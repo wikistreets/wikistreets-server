@@ -1,20 +1,21 @@
-var nodemailer = require("nodemailer")
+require("dotenv").config({ silent: true });
+var nodemailer = require("nodemailer");
 
 // a class to handle sending email
 function EmailService({ config }) {
   this.getTransporter = () => {
     // format the transporter object properly
     const transporter = nodemailer.createTransport({
-      host: "smtp.dreamhost.com",
+      host: process.env.SMTP_HOST,
       secure: true,
-      port: 465,
+      port: process.env.SMTP_PORT,
       auth: {
-        user: "accounts@wikistreets.io",
-        pass: "3n5e!Hcn",
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASSWORD,
       },
-    })
-    return transporter
-  }
+    });
+    return transporter;
+  };
 
   this.getMailOptions = (to, subject, text) => {
     // format the mail options object properly
@@ -24,9 +25,9 @@ function EmailService({ config }) {
       subject: subject,
       text: text,
       // html: html // causes getting flagged as spam!
-    }
-    return mailOptions
-  }
+    };
+    return mailOptions;
+  };
 
   // send the mail!
   this.send = (
@@ -37,25 +38,25 @@ function EmailService({ config }) {
     recipientUserId = false
   ) => {
     // add signature
-    text += "\n\nSincerely,\nThe Wikistreets.io Team"
+    text += "\n\nSincerely,\nThe Wikistreets.io Team";
     // tack on unsubscribe info, if desired
     if (unsubscribeLink && recipientUserId) {
-      text += `\n\n--\nWe aim to keep email notifications to a minimum, only sending email when we think it is of direct interest to your use of your maps.  If you wish to unsubscribe from all email notifications, first log in and then visit https://wikistreets.io/users/unsubscribe/email/${recipientUserId}.`
+      text += `\n\n--\nWe aim to keep email notifications to a minimum, only sending email when we think it is of direct interest to your use of your maps.  If you wish to unsubscribe from all email notifications, first log in and then visit https://wikistreets.io/users/unsubscribe/email/${recipientUserId}.`;
     }
 
-    const transporter = this.getTransporter()
-    const mailOptions = this.getMailOptions(to, subject, text)
+    const transporter = this.getTransporter();
+    const mailOptions = this.getMailOptions(to, subject, text);
 
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
-        console.log(`Error sending email to ${to}: ${error}`)
+        console.log(`Error sending email to ${to}: ${error}`);
       } else {
-        console.log(`Email sent to ${to}: ${info}`)
+        console.log(`Email sent to ${to}: ${info}`);
       }
-    })
-  } // send
+    });
+  }; // send
 } // EmailService
 
 module.exports = {
   EmailService,
-}
+};
