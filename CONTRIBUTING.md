@@ -2,31 +2,6 @@
 
 There is much work left to do!
 
-## Feature requests & bug reports
-
-Use [GitHub Issues](https://github.com/wikistreets/wikistreets/issues) to submit feature requests and bug reports.
-
-## Main tasks (call it a roadmap if you must)
-
-Some priorities at the moment:
-
-- documentation:
-  - create Markdown tutorials w/ YouTube instructional videos showing current functionality
-  - more example maps showing progressively more sophisticated uses
-- port to React
-  - port web app to React.js primarily for the data binding and to follow contemporary conventions
-  - separate client and server code into separate repositories to prepare for multiple clients
-  - create iOS and Android native client apps using React Native or Capactiro
-- notifications
-  - allow subscription to specific maps (currently it's all-maps-or-none)
-  - support for progressive web app notifications
-  - consider a notification info panel within the app interface
-- map styles
-  - allow map-wide style configs that are inherited by all posts within that map
-- layers
-  - support for layers within the [optional] [YAML front-matter](https://www.npmjs.com/package/gray-matter) config
-  - there are ideas for how to do this that require some documentation and experimentation
-
 ## Local setup
 
 The wikistreets server is a classic node.js/express app with a MongoDB database. The web client is currently bundled into the same repository. At a glance, you will need to do the following steps:
@@ -56,21 +31,13 @@ This project stores configuration options in a file named `.env`. For security r
 The server currently runs by default on port `10520`. Assuming you have installed `nodemon` (if not, run `npm install -g nodemon` or `sudo npm install -g nodemon`), start up the server locally:
 
 ```
-nodemon index.js
+npm run start-dev
 ```
 
 On a production server, conventional wisdom says to use `pm2` rather than `nodemon`. Install `pm2` (i.e. `npm install -g pm2` or `sudo npm install pm2`) and run the server:
 
 ```
 pm2 node index.js
-```
-
-### Start up the webpack bundler
-
-Client-side scripts in the `src/` folder are automatically minified and bundled on save using [webpack](https://webpack.js.org/). Automatically re-bundle any changes by setting the following watcher:
-
-```
-npx webpack --watch
 ```
 
 ### Expose your server via https
@@ -83,9 +50,9 @@ ngrok http 10520
 
 This will output the public HTTPS web address you can use to try out the web app from your web browser.
 
-### Try out the app on the web
+### Try out the server with Postman
 
-Plug the HTTPS web address output by `ngrok` into your web browser of choice to test out the app.
+Use [Postman](https://www.postman.com/) to test the server. An importable Postman settings file is included in the repository with the routes and example requests configured.
 
 ## Workflow
 
@@ -96,7 +63,3 @@ This project follows a standard forking workflow:
 - issues a pull request to this repository to have your changes reviewed and merged
 
 All changes should address a particular Issue (feature request or bug report) listed in the Issue tracker.
-
-## Publishing changes
-
-There is currently no continuous deployment setup. Changes must be manually pulled to the server at https://wikistreets.io. Hopefully we'll implement that soon.
