@@ -6,4 +6,4 @@ Back-end of wikistreets, built with express.js.
 
 - `npm install`
 - set up `.env` file based on `example.env` to point to a mongodb instance
-- `npm start` or `nodemon index` to start the server
+- `npm start-dev` to start the server
