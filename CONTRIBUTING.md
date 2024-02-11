@@ -1,10 +1,8 @@
 # Contributor guidelines
 
-There is much work left to do!
-
 ## Local setup
 
-The wikistreets server is a classic node.js/express app with a MongoDB database. The web client is currently bundled into the same repository. At a glance, you will need to do the following steps:
+The wikistreets server is a classic node.js/express app with a MongoDB database. At a glance, you will need to do the following steps:
 
 ### Clone this repository
 
@@ -28,7 +26,7 @@ This project stores configuration options in a file named `.env`. For security r
 
 ### Run the server
 
-The server currently runs by default on port `10520`. Assuming you have installed `nodemon` (if not, run `npm install -g nodemon` or `sudo npm install -g nodemon`), start up the server locally:
+The server currently runs by default on port `10520`, but the port is customizable in `.env`. Assuming you have installed `nodemon` (if not, run `npm install -g nodemon` or `sudo npm install -g nodemon`), start up the server locally:
 
 ```
 npm run start-dev
