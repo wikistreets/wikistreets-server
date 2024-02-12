@@ -6,11 +6,21 @@ Back-end of wikistreets, built with express.js.
 
 - `npm install`
 - set up `.env` file based on `example.env` to point to a mongodb instance
+
+## Run
+
+### Locally
+
+To run locally:
+
 - `npm start-dev` to start the server
 
-## Feature requests & bug reports
+### Docker
 
-Use [GitHub Issues](https://github.com/wikistreets/wikistreets/issues) to submit feature requests and bug reports.
+To run within a Docker container:
+
+- `docker build -t wikistreets-server .` to build the image.
+- `docker run --name wikistreets_backend -p 10520:10520 wikistreets-server` to start the server in a container instance, where `10520` is the port specified in `.env`.
 
 ## Contributing
 
