@@ -6,7 +6,8 @@ services:
       - 10520:10520
     environment:
       - NODE_ENV=production
-      - MONGODB_CXN_STRING_DEV=mongodb://admin:secret@mongodb/wikistreets
+      - MONGODB_CXN_STRING_DEV=mongodb://admin:secret@mongodb:27017
+      - MONGODB_CXN_STRING_PROD=mongodb://admin:secret@mongodb:27017
     env_file:
       - .env
     depends_on:
